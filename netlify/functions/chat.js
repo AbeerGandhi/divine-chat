@@ -6,25 +6,19 @@ export async function handler(event) {
 
     const { messages } = JSON.parse(event.body);
 
-    if (!process.env.OPENROUTER_KEY) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: "OPENROUTER_KEY missing" })
-      };
-    }
-
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`,
+          Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "http://localhost:3000",
           "X-Title": "DharmaGuide"
         },
         body: JSON.stringify({
           model: "mistralai/mistral-7b-instruct",
+          max_tokens: 160,
           messages
         })
       }
@@ -51,10 +45,7 @@ export async function handler(event) {
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: "Function crashed",
-        details: err.message
-      })
+      body: JSON.stringify({ error: err.message })
     };
   }
 }
