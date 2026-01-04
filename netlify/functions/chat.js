@@ -1,12 +1,17 @@
-import fetch from "node-fetch";
-
 export async function handler(event) {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
   try {
+    if (event.httpMethod !== "POST") {
+      return { statusCode: 405, body: "Method Not Allowed" };
+    }
+
     const { messages } = JSON.parse(event.body);
+
+    if (!process.env.OPENROUTER_KEY) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "OPENROUTER_KEY missing" })
+      };
+    }
 
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
@@ -14,7 +19,9 @@ export async function handler(event) {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "HTTP-Referer": "http://localhost:3000",
+          "X-Title": "DharmaGuide"
         },
         body: JSON.stringify({
           model: "mistralai/mistral-7b-instruct",
@@ -23,15 +30,16 @@ export async function handler(event) {
       }
     );
 
+    const raw = await response.text();
+
     if (!response.ok) {
-      const err = await response.text();
       return {
         statusCode: response.status,
-        body: err
+        body: raw
       };
     }
 
-    const data = await response.json();
+    const data = JSON.parse(raw);
 
     return {
       statusCode: 200,
@@ -43,7 +51,10 @@ export async function handler(event) {
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Server error" })
+      body: JSON.stringify({
+        error: "Function crashed",
+        details: err.message
+      })
     };
   }
 }
