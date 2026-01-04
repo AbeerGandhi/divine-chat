@@ -43,7 +43,7 @@ ${languageRule}
     },
     {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENROUTER_KEY}`,
+        Authorization: `Bearer ${process.env.OPENROUTER_KEY}`,
         "Content-Type": "application/json"
       }
     }
