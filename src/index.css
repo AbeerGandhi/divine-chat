@@ -5,4 +5,5 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  overscroll-behavior-y: none; /* Prevents pull-to-refresh rubber banding on mobile */
 }

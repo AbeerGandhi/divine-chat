@@ -22,14 +22,15 @@ export default function VoiceInput({ onResult }) {
     if (recognitionRef.current) {
       try {
         recognitionRef.current.stop();
-      } catch {}
+      } catch { }
       recognitionRef.current = null;
     }
 
     const recognition = new SpeechRecognition();
     recognitionRef.current = recognition;
 
-    recognition.lang = language === "en" ? "en-US" : "hi-IN";
+    // Use en-US to force Roman characters (Hinglish) instead of Devanagari
+    recognition.lang = "en-US";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
@@ -69,9 +70,8 @@ export default function VoiceInput({ onResult }) {
     <button
       onClick={startListening}
       disabled={listening}
-      className={`text-gray-500 hover:text-black ${
-        listening ? "opacity-50 cursor-not-allowed" : ""
-      }`}
+      className={`text-gray-500 hover:text-black ${listening ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       title={listening ? "Listening..." : "Speak"}
     >
       🎤
