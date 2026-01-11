@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { User, Sparkles } from "lucide-react";
-import { User, Sparkles } from "lucide-react";
 
 export default function ChatMessage({ role, text }) {
   const isUser = role === "user";
