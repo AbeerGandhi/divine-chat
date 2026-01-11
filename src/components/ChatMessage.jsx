@@ -1,6 +1,5 @@
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
 import { motion } from "framer-motion";
+import { User, Sparkles } from "lucide-react";
 import { User, Sparkles } from "lucide-react";
 
 export default function ChatMessage({ role, text }) {

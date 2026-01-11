@@ -1,5 +1,4 @@
-import { useContext, useRef, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useRef, useState } from "react";
 
 export default function VoiceInput({ onResult }) {
   const recognitionRef = useRef(null);

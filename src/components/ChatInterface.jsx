@@ -2,7 +2,6 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import ChatMessage from "./ChatMessage";
 import { askOpenRouter } from "../services/openrouter";
-import { speak } from "../utils/speak";
 import VoiceInput from "./VoiceInput";
 import TypingIndicator from "./TypingIndicator";
 import { Send, ArrowUp } from "lucide-react";
