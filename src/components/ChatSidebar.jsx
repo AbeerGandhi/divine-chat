@@ -1,8 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, MessageSquare, Trash2, X, Menu, ChevronLeft, Edit2, Check } from "lucide-react";
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { Plus, Trash2, X, Edit2, Check } from "lucide-react";
 
 export default function ChatSidebar({
     isOpen,
@@ -14,7 +12,6 @@ export default function ChatSidebar({
     onDeleteSession,
     onUpdateSession // Ensure this is passed from parent now
 }) {
-    const { epic } = useContext(ThemeContext);
     const [editingId, setEditingId] = useState(null);
     const [editTitle, setEditTitle] = useState("");
 

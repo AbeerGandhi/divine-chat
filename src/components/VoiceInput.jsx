@@ -2,7 +2,6 @@ import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
 export default function VoiceInput({ onResult }) {
-  const { language } = useContext(ThemeContext);
   const recognitionRef = useRef(null);
   const [listening, setListening] = useState(false);
 

@@ -18,10 +18,17 @@ export function useChatSessions() {
         }
     }, []);
 
-    const saveSessions = (newSessions) => {
-        setSessions(newSessions);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(newSessions));
-    };
+    // Load sessions on mount
+    useEffect(() => {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try {
+                setSessions(JSON.parse(saved).sort((a, b) => b.timestamp - a.timestamp));
+            } catch (e) {
+                console.error("Failed to parse sessions", e);
+            }
+        }
+    }, []);
 
     const createSession = useCallback((epic, firstMessage = null) => {
         const newSession = {

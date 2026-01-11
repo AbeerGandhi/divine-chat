@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { speak } from "../utils/speak";
 import { motion } from "framer-motion";
-import { Volume2, User, Sparkles } from "lucide-react";
+import { User, Sparkles } from "lucide-react";
 
 export default function ChatMessage({ role, text }) {
-  const { language } = useContext(ThemeContext);
   const isUser = role === "user";
 
   return (

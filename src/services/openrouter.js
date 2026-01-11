@@ -1,11 +1,4 @@
 export async function askOpenRouter(question, epic, language) {
-  const languageRule =
-    language === "en"
-      ? "Reply strictly in English."
-      : `
-Reply in natural Hindi or Hinglish (Hindi written in English letters).
-Do NOT use Sanskrit-heavy or robotic language.
-`;
 
   const systemPrompt = `
 You are a calm, compassionate spiritual guide, speaking with the wisdom of the ${epic === "ramayan" ? "Ramayan" : "Mahabharata"}.

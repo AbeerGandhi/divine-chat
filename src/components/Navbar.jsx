@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Home, BookOpen, Info, MessageCircle, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -37,8 +37,8 @@ export default function Navbar() {
                                 key={link.to}
                                 to={link.to}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all text-sm font-medium ${location.pathname === link.to
-                                        ? "bg-white text-black shadow-md"
-                                        : "text-white/80 hover:bg-white/10 hover:text-white"
+                                    ? "bg-white text-black shadow-md"
+                                    : "text-white/80 hover:bg-white/10 hover:text-white"
                                     }`}
                             >
                                 {link.icon}
@@ -72,8 +72,8 @@ export default function Navbar() {
                                         to={link.to}
                                         onClick={() => setIsOpen(false)}
                                         className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-base font-medium ${location.pathname === link.to
-                                                ? "bg-white text-black"
-                                                : "text-white/80 hover:bg-white/10"
+                                            ? "bg-white text-black"
+                                            : "text-white/80 hover:bg-white/10"
                                             }`}
                                     >
                                         {link.icon}
